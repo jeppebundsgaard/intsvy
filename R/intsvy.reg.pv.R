@@ -66,9 +66,12 @@ intsvy.reg.pv <-
     }
     if (config$parameters$weights == "JK") {
       # jack knife
-      # in PIRLS / TIMSS
-
-      pvnames <- paste(pvlabel, "0", 1:5, sep="")
+      
+      if(config$input$student == "bsg") #ICILS
+        pvnames <- paste( "PV", 1:5,"CIL", sep="")
+      else      #PIRLS / TIMSS
+        pvnames <- paste(pvlabel, "0", 1:5, sep="")
+      
       # List of formulas for each PV
       regform <- lapply(pvnames, function(i) paste(i, "~", paste(x, collapse="+")))
 
